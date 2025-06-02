@@ -1,0 +1,28 @@
+# This is the standard conda configuration file. Use this file to list
+# the conda packages that you need installed in your environment.
+channels:
+  - conda-forge
+  - pypi
+  - defaults
+
+dependencies:
+  - python=3.11
+  - xarray=2023.6.0
+  - numpy=1.25.0
+  - scipy=1.13.0
+  - numba=0.59.0
+  - pandas=1.5.3
+  - matplotlib=3.7.1
+  - netcdf4=1.6.4
+  - jupyter=1.0.0
+  - jupyterlab
+  - ipython=8.12.0
+  - ipykernel=6.19.2
+  - ffmpeg=4.2.2
+  - dask=2023.6.0
+  - cmocean=3.0.3
+  - cartopy=0.21.1
+  - pyproj=3.5.0
+  - pyshp=2.3.1
+  - PyYAML=6.0.1
+  - mpi4py=4.0.3

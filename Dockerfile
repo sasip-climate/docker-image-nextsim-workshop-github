@@ -2,7 +2,7 @@
 FROM mambaorg/micromamba:2.0.8 AS micromamba
 
 # Final container
-FROM ghcr.io/nextsimhub/nextsimdg-dev-env:latest
+FROM einola/nextsimdg-dev-mac-env:latest
 
 ## build nextsimdg model
 RUN git clone -b workshop_brown https://github.com/nextsimhub/nextsimdg.git /home/nextsimdg

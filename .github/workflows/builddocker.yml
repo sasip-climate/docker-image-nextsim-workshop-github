@@ -28,6 +28,6 @@ jobs:
         with:
           context: .
           push: true
-          platforms: linux/amd64,linux/arm64  # Enable multi-platform builds
+          platforms: linux/arm64  # Specific for arm build
           file: Dockerfile        # Path to your Dockerfile
           tags: ghcr.io/sasip-climate/workshop:latest

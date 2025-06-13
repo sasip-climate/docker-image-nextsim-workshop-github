@@ -6,6 +6,8 @@ FROM einola/nextsimdg-dev-mac-env:latest
 
 ## build nextsimdg model
 RUN git clone -b workshop_brown https://github.com/nextsimhub/nextsimdg.git /home/nextsimdg
+WORKDIR /home/nextsimdg
+RUN git reset --hard fd90f9d38b8966f38522e9bc282c3c324c3442eb
 
 WORKDIR /home/nextsimdg/build
 
@@ -14,6 +16,9 @@ ARG xios=OFF
 ARG jobs=1
 
 RUN . /opt/spack-environment/activate.sh && cmake -DCMAKE_BUILD_TYPE=Release -DWITH_THREADS=ON -DENABLE_MPI=$mpi -DENABLE_XIOS=$xios -Dxios_DIR=/xios .. && make -j $jobs
+
+## install NEDAS
+RUN git clone -b develop https://github.com/nansencenter/NEDAS /home/NEDAS
 
 ##install libraries with mamba
 USER root
@@ -64,7 +69,16 @@ RUN apt-get -y -q update \
 	git \
 && rm -rf /var/lib/apt/lists/*
 
+## Some NEDAS installatin
+WORKDIR /home/NEDAS
+RUN micromamba run -n base pip install -e .
+ENV UCX_LOG_LEVEL=error
+
+## Retrieve the data
 WORKDIR /home
+RUN wget https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/fileServer/meomopendap/extract/SASIP/data-nextsim-workshop2025.tar
+RUN tar -xvf data-nextsim-workshop2025.tar
+RUN rm data-nextsim-workshop2025.tar
 
 EXPOSE 8888
 

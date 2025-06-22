@@ -6,8 +6,6 @@ FROM einola/nextsimdg-dev-mac-env:latest
 
 ## build nextsimdg model
 RUN git clone -b workshop_brown https://github.com/nextsimhub/nextsimdg.git /home/nextsimdg
-WORKDIR /home/nextsimdg
-RUN git reset --hard fd90f9d38b8966f38522e9bc282c3c324c3442eb
 
 WORKDIR /home/nextsimdg/build
 
